@@ -1,6 +1,6 @@
 package edu.tutorial.javaTraining;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 /*
 * Animal class
@@ -66,7 +66,7 @@ public class Dog extends Mammal{
     public static void main(String args[])
     {
         Dog d1[ ] = new Dog[5];
-        ArrayList<Dog> list = new ArrayList<Dog>();
+        LinkedList<Dog> list = new LinkedList();
         /* instead we can use input command
         BufferedReader class
         below is the syntax
