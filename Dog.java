@@ -92,7 +92,7 @@ public class Dog extends Mammal{
     }
     Dog(String color,String gender,String typeofFood,String breed)
     {
-        //super();
+        super();
         setAnimalColor(color);
         feedingType = typeofFood;
         setGender(gender);
