@@ -1,34 +1,63 @@
 package com.test;
 
+import java.util.Scanner;
+
 public class SingletonDemo {
 
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Welcome to Movie Tickets booking. There are only 10 seats avaialble.");
+		System.out.println("Enter 1 to book a ticket.");
+		System.out.println("Enter 2 to cancel a ticket.");
+		System.out.println("Enter 3 to exit.");
+		while (true) {
 
-		SingleObject object = SingleObject.getInstance();
+			int k = sc.nextInt();
 
-		object.showMessage();
-		object.print("This is first message");
-		object.print("This is second message");
+			MovieTickets instance = MovieTickets.getInstance();
+
+			if (k == 1) {
+				if (instance.getSeats() > 0) {
+					instance.bookSeat();
+					System.out.println("Your Ticket has booked.");
+				}
+			} else if (k == 2) {
+				if (instance.getSeats() < 10) {
+					instance.cancelSeat();
+					System.out.println("Your Ticket has cancelled.");
+				}
+			} else
+				System.exit(1);
+			System.out.println("Seats Available:" + instance.getSeats());
+		}
+
 	}
 }
 
-class SingleObject {
+class MovieTickets {
+	public static MovieTickets instance = null;
+	private int seats = 0;
 
-	private static SingleObject instance = new SingleObject();
-
-	private SingleObject() {
+	private MovieTickets() {
+		seats = 10;
 	}
 
-	public static SingleObject getInstance() {
+	public static MovieTickets getInstance() {
+		if (instance == null) {
+			instance = new MovieTickets();
+		}
 		return instance;
 	}
 
-	public void showMessage() {
-		System.out.println("Hello ");
-
+	public int getSeats() {
+		return seats;
 	}
 
-	public void print(String str) {
-		System.out.println(str);
+	public void bookSeat() {
+		seats--;
+	}
+
+	public void cancelSeat() {
+		seats++;
 	}
 }
